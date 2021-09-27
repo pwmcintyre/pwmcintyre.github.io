@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
+
+    <head>
+                <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="author" content="Peter McIntyre">
+  
+	
+        <meta property="og:site_name" content="words">
+        <meta property="og:title" content="words">
+        <meta property="og:url" content="http://blog.mcintyre.pw/post/logs/">
+        <meta property="og:description" content="about humans and machines">
+    
+        <meta property="og:type" content="article" />
+        <meta property="og:article:author" content="Peter McIntyre" />
+        <meta property="og:article:published_time" content="2021-05-01T01:00:00&#43;11:00" />
+    
+        <meta name="generator" content="Hugo 0.54.0" />
+        <title>logging &middot; words</title>
+        <link rel="canonical" href="http://blog.mcintyre.pw/" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
+        <link rel="stylesheet" type="text/css" href="http://blog.mcintyre.pw/css/main.css"/>
+        <link href="//fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    </head>
+<body>
+<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+
+    <header id="site-header">
+        <div class="container">
+            <a href="http://blog.mcintyre.pw/" alt="words"><h1 class="blog-title heading">words</h1></a>
+            <p class="blog-description">about humans and machines</p>
+        </div>
+    </header>
+<main class="content" role="main">
+	<div class="container">
+		<article class="post">
+    <header class="post-header">
+        <h3 class="post-title"><a href="http://blog.mcintyre.pw/post/logs/">logging</a></h3>
+        <p class="post-time"><time datetime="2021-05-01T01:00:00&#43;11:00">May 1, 2021</time></p>
+    </header>
+
+    <section class="post-content">
+        <p>This page has been converted from my slides found here: <a href="https://github.com/pwmcintyre/logging/blob/master/README.md">https://github.com/pwmcintyre/logging/blob/master/README.md</a></p>
+
+<hr />
+
+<h2 id="context">Context</h2>
+
+<h3 id="pillars-of-observability">Pillars of Observability</h3>
+
+<ul>
+<li>Metric (coarse-grain)</li>
+<li>Log (🤷)</li>
+<li>Trace (fine-grain)</li>
+</ul>
+
+<h3 id="reality-check-metrics">Reality Check: metrics</h3>
+
+<p>Metrics are low-fidelity event aggregates</p>
+
+<p>Tells you IF failure; but not WHY failure</p>
+
+<h3 id="reality-check-tracing">Reality Check: tracing</h3>
+
+<p>Tracing is logging with opinion + tooling</p>
+
+<p>You can DIY or SaaS:
+- AWS X-Ray
+- DataDog APM
+- honeycomb.io</p>
+
+<hr />
+
+<h2 id="basics">Basics</h2>
+
+<ol>
+<li>context</li>
+<li>correlation</li>
+<li>level</li>
+</ol>
+
+<hr />
+
+<h2 id="context-1">Context</h2>
+
+<p>You cannot predict future questions<br />
+— be generous</p>
+
+<p>Logs impose no limits on size* / cardinality</p>
+
+<p>&hellip; consider data sensitivity; probably don&rsquo;t dump blobs</p>
+
+<h3 id="common-mistakes">Common Mistakes</h3>
+
+<h4 id="message-overloading">message overloading</h4>
+
+<blockquote>
+<p>Task finished: CreateRoutes2: duration=3.014</p>
+</blockquote>
+
+<ul>
+<li>hard to parse<br /></li>
+<li>slow to filter (using <code>like</code> operation)<br /></li>
+<li>ambiguous unit</li>
+</ul>
+
+<h3 id="context-examples">Context examples</h3>
+
+<p>example: <code>./examples.md</code></p>
+
+<h3 id="context-in-practice">Context in practice</h3>
+
+<p><span style="color:#46735E"><strong>good logs</strong></span> are a consequence of <span style="color:#46735E"><strong>good code</strong></span></p>
+
+<h4 id="example-pipe-architecture">Example — pipe architecture</h4>
+
+<pre><code class="language-text">queue service &gt; validator service &gt; sender service
+</code></pre>
+
+<p>Q: who should log?</p>
+
+<p>A: 🤷</p>
+
+<p>&hellip; now you have a new problem; how to pass context + correlation?</p>
+
+<h4 id="solid">SOLID</h4>
+
+<pre><code class="language-text">controller &gt; queue
+controller &gt; validator
+controller &gt; sender
+controller &gt; log
+</code></pre>
+
+<p>Q: who should log?</p>
+
+<p>A: The controller</p>
+
+<p>&hellip; everything else performs a discrete function</p>
+
+<h4 id="inversion-of-control">Inversion of control</h4>
+
+<pre><code class="language-go">// get next
+work := queue.Pop()
+log = logger.WithField(&quot;work_id&quot;, item.ID)
+
+// validate
+if reason := s.validator.IsValid(work.Body); reason != nil {
+    logger.WithField(&quot;reason&quot;, reason).Info(&quot;item invalid&quot;)
+    return
+}
+
+// send
+if err := s.sender.Send(work.Body); !err != nil {
+    logger.WithError(err).Error(&quot;failed to send item&quot;)
+    return
+}
+
+// commit work
+work.Delete()
+
+// emit
+logger.Info(&quot;done&quot;)
+</code></pre>
+
+<p><small>* assume error handling!</small></p>
+
+<h4 id="single-responsibility-principle">Single-responsibility principle</h4>
+
+<pre><code class="language-go">func Sender (i Item) error {
+
+    // serialize
+    body, err := json.Marshal(i)
+    if err != nil {
+        return errors.Wrap(err, &quot;serialization failure&quot;)
+    }
+
+    // send
+    resp, err := http.Post(url, &quot;application/json&quot;, bytes.NewBuffer(body))
+    if err != nil {
+        return errors.Wrap(err, &quot;http failure&quot;)
+    }
+    defer res.Body.Close()
+
+    // check response
+    if response.StatusCode != http.StatusOK {
+        return fmt.Errorf(&quot;backend failure: %s&quot;, response.Status)
+    }
+
+    return nil
+}
+</code></pre>
+
+<p><small>dont log AND throw (that&rsquo;s 2 things)</small></p>
+
+<h3 id="context-in-practice-1">Context in practice</h3>
+
+<p>Code falls into 2 flavours:
+1. Controller<br />
+    <code>level=INFO</code>
+2. Everything else<br />
+    <code>level=DEBUG</code></p>
+
+<h3 id="observer-pattern">Observer pattern</h3>
+
+<p>example: <code>./go/service/main.go</code></p>
+
+<p><small>treat logs as an event emitting dependancy</small></p>
+
+<hr />
+
+<h2 id="correlation">Correlation</h2>
+
+<p>&hellip; a cross-component concern</p>
+
+<p>👉 <strong><em>Concensus</em></strong> 👈</p>
+
+<p>☝</p>
+
+<pre><code class="language-text">correlation_id / request_id / user_id / asset_id / ...
+</code></pre>
+
+<h3 id="correlation-1">Correlation</h3>
+
+<p>reaching consensus through tooling</p>
+
+<pre><code class="language-golang">package appcontext
+
+type RequestContext struct { ... }
+
+type ClientContext struct { ... }
+
+type SystemContext struct {
+	Application string `json:&quot;application,omitempty&quot;`
+	Version     string `json:&quot;version,omitempty&quot;`
+	Environment string `json:&quot;environment,omitempty&quot;`
+}
+
+func WithSystemContext(ctx context.Context, val SystemContext) context.Context {
+	return context.WithValue(ctx, key, val)
+}
+
+func GetSystemContext(ctx context.Context) (val SystemContext, ok bool) {
+	val, ok = ctx.Value(key).(SystemContext)
+	return
+}
+
+...
+</code></pre>
+
+<hr />
+
+<h2 id="levels">Levels</h2>
+
+<p>A broad category which is important to <span style="text-decoration:underline">collectively agree on</span>.</p>
+
+<h3 id="common-mistakes-1">Common Mistakes</h3>
+
+<h4 id="non-error">non-ERROR</h4>
+
+<blockquote>
+<p>ERROR: client is not authorized</p>
+</blockquote>
+
+<p>This belongs in the response to the client:<br />
+<code>401 Unauthorized</code></p>
+
+<p>(or maybe an &ldquo;access log&rdquo;)</p>
+
+<h4 id="non-info">non-INFO</h4>
+
+<p>Uninteresting plumbing</p>
+
+<blockquote>
+<p>INFO: executed &lsquo;SELECT * FROM foo&rsquo;</p>
+
+<p>INFO: parsed JSON</p>
+</blockquote>
+
+<p><small>aka. i was prototyping and accidentally committed it</small></p>
+
+<h4 id="predictions">predictions</h4>
+
+<p>Predicting the future</p>
+
+<blockquote>
+<p>INFO: about to handle request</p>
+</blockquote>
+
+<p><small>aka. i don&rsquo;t trust my language to trap exceptions</small></p>
+
+<h3 id="level-definitions">Level Definitions</h3>
+
+<h3 id="fatal">fatal</h3>
+
+<p>The system cannot continue</p>
+
+<blockquote>
+<p>FATAL: failed to connect to database</p>
+</blockquote>
+
+<h3 id="error">error</h3>
+
+<p>A transient problem during processing</p>
+
+<blockquote>
+<p>ERROR: timeout while saving</p>
+</blockquote>
+
+<h3 id="warning">warning</h3>
+
+<p>Processing degraded but can continue</p>
+
+<blockquote>
+<p>WARN: config unset; using default</p>
+</blockquote>
+
+<p><small><em>opinion: use INFO</em></small></p>
+
+<h3 id="info">info</h3>
+
+<p>System did what you asked it to do</p>
+
+<blockquote>
+<p>INFO: done</p>
+
+<p>INFO: batch complete</p>
+
+<p>INFO: cache refreshed</p>
+</blockquote>
+
+<h3 id="debug">debug</h3>
+
+<p>Low-level supporting steps.</p>
+
+<p>Usually disabled due to poor signal-to-noise ratio.</p>
+
+<p><strong>Danger zone:</strong> Take care with sensitive data!</p>
+
+<hr />
+
+<h2 id="closing">Closing</h2>
+
+<p>you&rsquo;ll get it wrong the first time; <strong>iterate</strong></p>
+    </section>
+
+    <hr>
+
+    <footer class="post-footer">
+        <section class="f-1">
+            
+            <section class="author">
+                <p>Words by Peter McIntyre</p>
+            </section>
+            
+            
+            <p class="f-post-time"><time datetime="2021-05-01T01:00:00&#43;11:00">May 1, 2021</time></p>
+        </section>
+                        
+        <section class="f-2">
+            <section class="share">
+                <span>Share:
+                <a class="icon-twitter" href="http://twitter.com/share?text=logging&url=http%3a%2f%2fblog.mcintyre.pw%2fpost%2flogs%2f"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.mcintyre.pw%2fpost%2flogs%2f"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fblog.mcintyre.pw%2fpost%2flogs%2f"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+                </span>
+            </section>
+
+            
+            	<span class="f-post-tags"><i class="fa fa-tag"></i>
+            	logs, observability
+            	</span>
+            
+        </section>
+                
+        <section id="comments">
+            <div id="disqus_thread" class="post-comments"></div>
+            <script type="text/javascript">
+              if (window.location.hostname != "localhost") {
+                var disqus_shortname = 'blog-mcintyre-pw';
+                (function() {
+                  var dsq = document.createElement('script');
+                  dsq.type = 'text/javascript';
+                  dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              }
+            </script>
+            <noscript>
+              Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </section>
+                
+    </footer>
+</article>
+	</div>
+</main>
+    <footer id="site-footer">
+        <div class="container">
+            <a href="http://blog.mcintyre.pw/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
+            <section>&copy; <a href="http://blog.mcintyre.pw/">Peter McIntyre</a> 2015 | All rights reserved</section>
+            <section>Theme by <a href="http://www.jrdnbwmn.com">Jordan Bowman</a>. Generated with <a href="http://gohugo.io/">Hugo</a>.</section>
+        </div>
+    </footer>
+
+    <script>
+        var _gaq=[['_setAccount','UA-86655542-1'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src='//www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+
+
+</body>
+</html>

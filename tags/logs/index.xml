@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logs on words</title>
+    <link>http://blog.mcintyre.pw/tags/logs/</link>
+    <description>Recent content in Logs on words</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sat, 01 May 2021 01:00:00 +1100</lastBuildDate>
+    
+	<atom:link href="http://blog.mcintyre.pw/tags/logs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>logging</title>
+      <link>http://blog.mcintyre.pw/post/logs/</link>
+      <pubDate>Sat, 01 May 2021 01:00:00 +1100</pubDate>
+      
+      <guid>http://blog.mcintyre.pw/post/logs/</guid>
+      <description>&lt;p&gt;This page has been converted from my slides found here: &lt;a href=&#34;https://github.com/pwmcintyre/logging/blob/master/README.md&#34;&gt;https://github.com/pwmcintyre/logging/blob/master/README.md&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

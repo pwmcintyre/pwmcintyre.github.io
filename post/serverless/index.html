@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
+
+    <head>
+                <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="author" content="Peter McIntyre">
+  
+	
+        <meta property="og:site_name" content="words">
+        <meta property="og:title" content="words">
+        <meta property="og:url" content="http://blog.mcintyre.pw/post/serverless/">
+        <meta property="og:description" content="about humans and machines">
+    
+        <meta property="og:type" content="article" />
+        <meta property="og:article:author" content="Peter McIntyre" />
+        <meta property="og:article:published_time" content="2016-11-29T23:18:56&#43;11:00" />
+    
+        <meta name="generator" content="Hugo 0.54.0" />
+        <title>why serverless &middot; words</title>
+        <link rel="canonical" href="http://blog.mcintyre.pw/" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
+        <link rel="stylesheet" type="text/css" href="http://blog.mcintyre.pw/css/main.css"/>
+        <link href="//fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    </head>
+<body>
+<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+
+    <header id="site-header">
+        <div class="container">
+            <a href="http://blog.mcintyre.pw/" alt="words"><h1 class="blog-title heading">words</h1></a>
+            <p class="blog-description">about humans and machines</p>
+        </div>
+    </header>
+<main class="content" role="main">
+	<div class="container">
+		<article class="post">
+    <header class="post-header">
+        <h3 class="post-title"><a href="http://blog.mcintyre.pw/post/serverless/">why serverless</a></h3>
+        <p class="post-time"><time datetime="2016-11-29T23:18:56&#43;11:00">November 29, 2016</time></p>
+    </header>
+
+    <section class="post-content">
+        <figure>
+    <img src="/media/aws_lambda.jpg"/> 
+</figure>
+
+
+<p><em>Focus on your strengths, your business.</em></p>
+
+<p>This year, 2016, I&rsquo;m getting married (woo!)</p>
+
+<p>Why is that relavent? Because with my new AWS Solutions Architect Cert under my belt, I have the perfect excuse to build the worlds most robust wedding website ever.</p>
+
+<p>But first lets try to define &ldquo;Serverless,&rdquo; this guy sums it up perfectly:</p>
+
+<blockquote>
+<p>&ldquo;<em>Serverless architectures refer to applications that significantly depend on third-party services&hellip;. such architectures remove the need for the traditional &lsquo;always on&rsquo; server system sitting behind an application. Depending on the circumstances, such systems can significantly reduce operational cost and complexity</em>&rdquo; - <a href="http://martinfowler.com/articles/serverless.html">Martin Fowler</a></p>
+</blockquote>
+
+<p>Thanks, Martin.</p>
+
+<h1 id="content">Content</h1>
+
+<p>I&rsquo;ve worked with Content Management Systems before; big expensive ones, free open-source, and others in-between. But they all suffer from similar problems, they:</p>
+
+<ol>
+<li>Don&rsquo;t do version control well</li>
+<li>Don&rsquo;t scale well</li>
+<li>Require a server, which
+
+<ul>
+<li>Need maintenance</li>
+<li>Cost money</li>
+</ul></li>
+</ol>
+
+<p>But mostly, I&rsquo;m just <em>over</em> maintaining servers!</p>
+
+<p>Lets address those problems:</p>
+
+<h2 id="version-control">Version Control</h2>
+
+<p>I&rsquo;m not sure this is even up for discussion - if you need source version control, use <a href="https://git-scm.com/">Git</a>.</p>
+
+<p>Moving on.</p>
+
+<h2 id="durability-availabily-security">Durability / Availabily / Security</h2>
+
+<p>Let me lay down some quick perks of running my serverless wedding website:</p>
+
+<ul>
+<li>Guarenteed uptime of 99.99%</li>
+<li>Guarenteed durability of 99.999999999%</li>
+<li>Protection against DDOS</li>
+<li>Global CDN caching and SSL offloading</li>
+<li>No maintenance</li>
+</ul>
+
+<p>Let&rsquo;s not kid ourselves, there are still servers involved in serverless architectures; this is not wizardry. In reality it&rsquo;s simple; somebody deals with the many invisible layers which enables this service, including server maintenance, then charge a small fee to consume a small slice of it. Fortunately for me, AWS is doing this at such a massive scale that my small website is a drop in the ocean and priced accordingly.</p>
+
+<h2 id="money">Money</h2>
+
+<p>Have a think, what would you expect to pay for the above features with a traditional server architecture?</p>
+
+<p>Even if you wanted to use virtualization on the cheapest cloud provider out there, achieving those SLA&rsquo;s would cost thousands.</p>
+
+<p>I did in under AUD 20, here&rsquo;s the breakdown:</p>
+
+<p><strong>Up-front costs - AUD 12.86</strong></p>
+
+<ul>
+<li>Domain name - $1.99</li>
+<li>SSL Certificate - $10.87</li>
+</ul>
+
+<p><em>(yes, there are cheaper options out there if you&rsquo;re less picky)</em></p>
+
+<p><strong>Monthly costs - Assuming AWS Free-Tier - AUD 1.45</strong></p>
+
+<ul>
+<li>Domain Name Management - $0.50</li>
+<li>DNS requests - $0.01</li>
+<li>Web Hosting (S3) - Free</li>
+<li>Presentation Layer (API Gateway) - Free</li>
+<li>Application layer (Lambda) - Free</li>
+<li>Database (DynamoDB) - Free</li>
+<li>SMS Notifications - $0.94</li>
+</ul>
+
+<p><strong>Monthly costs without Free-Tier</strong></p>
+
+<p>Rough estimates say about AUD 2.00, but for the sake of argument I calculaed for about a million hits a day, including database writes, doesn&rsquo;t even reach AUD 100.</p>
+
+<h2 id="scale">Scale</h2>
+
+<p>Here&rsquo;s the cherry on top: Lets say I did want to scale my website from 100 monthly users to 100 million - no extra effort is required on my behalf, just a bigger budget. And lets say I want to prevent a burst of traffic from blowing my budget, there&rsquo;s tools for that too.</p>
+
+<h1 id="my-serverless-solution">My Serverless Solution</h1>
+
+<p>Okay, so what does it look like?
+I chose AWS, so here&rsquo;s my very AWS-centric architecture:</p>
+
+<ul>
+<li>Git for source / version control / collaboration</li>
+<li><a href="https://gohugo.io/">Hugo</a> provides a great way to structure the site and render markdown to HTML</li>
+<li>Static pages are pushed to S3 for hosting</li>
+<li>CloudFront provides a CDN and offloads SSL encryption</li>
+<li>JavaScript + <a href="https://vuejs.org/">Vue.js</a> for front end application logic</li>
+<li>API Gateway and Lambda for backend logic</li>
+<li>DynamoDB for data storage</li>
+<li>SNS for notifications</li>
+</ul>
+
+<figure>
+    <img src="/media/aws_serverless_hugo.png"/> <figcaption>
+            <p>My serverless site</p>
+        </figcaption>
+</figure>
+    </section>
+
+    <hr>
+
+    <footer class="post-footer">
+        <section class="f-1">
+            
+            <section class="author">
+                <p>Words by Peter McIntyre</p>
+            </section>
+            
+            
+            <p class="f-post-time"><time datetime="2016-11-29T23:18:56&#43;11:00">November 29, 2016</time></p>
+        </section>
+                        
+        <section class="f-2">
+            <section class="share">
+                <span>Share:
+                <a class="icon-twitter" href="http://twitter.com/share?text=why%20serverless&url=http%3a%2f%2fblog.mcintyre.pw%2fpost%2fserverless%2f"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fblog.mcintyre.pw%2fpost%2fserverless%2f"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fblog.mcintyre.pw%2fpost%2fserverless%2f"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+                </span>
+            </section>
+
+            
+            	<span class="f-post-tags"><i class="fa fa-tag"></i>
+            	cloud, serverless, hugo
+            	</span>
+            
+        </section>
+                
+        <section id="comments">
+            <div id="disqus_thread" class="post-comments"></div>
+            <script type="text/javascript">
+              if (window.location.hostname != "localhost") {
+                var disqus_shortname = 'blog-mcintyre-pw';
+                (function() {
+                  var dsq = document.createElement('script');
+                  dsq.type = 'text/javascript';
+                  dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              }
+            </script>
+            <noscript>
+              Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </section>
+                
+    </footer>
+</article>
+	</div>
+</main>
+    <footer id="site-footer">
+        <div class="container">
+            <a href="http://blog.mcintyre.pw/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
+            <section>&copy; <a href="http://blog.mcintyre.pw/">Peter McIntyre</a> 2015 | All rights reserved</section>
+            <section>Theme by <a href="http://www.jrdnbwmn.com">Jordan Bowman</a>. Generated with <a href="http://gohugo.io/">Hugo</a>.</section>
+        </div>
+    </footer>
+
+    <script>
+        var _gaq=[['_setAccount','UA-86655542-1'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src='//www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+
+
+</body>
+</html>

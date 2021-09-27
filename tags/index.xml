@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on words</title>
+    <link>http://blog.mcintyre.pw/tags/</link>
+    <description>Recent content in Tags on words</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Thu, 03 Nov 2016 23:12:02 +1100</lastBuildDate>
+    
+	<atom:link href="http://blog.mcintyre.pw/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ancestry</title>
+      <link>http://blog.mcintyre.pw/tags/ancestry/</link>
+      <pubDate>Thu, 03 Nov 2016 23:12:02 +1100</pubDate>
+      
+      <guid>http://blog.mcintyre.pw/tags/ancestry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloud</title>
+      <link>http://blog.mcintyre.pw/tags/cloud/</link>
+      <pubDate>Tue, 29 Nov 2016 23:18:56 +1100</pubDate>
+      
+      <guid>http://blog.mcintyre.pw/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>http://blog.mcintyre.pw/tags/hugo/</link>
+      <pubDate>Tue, 29 Nov 2016 23:18:56 +1100</pubDate>
+      
+      <guid>http://blog.mcintyre.pw/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Logs</title>
+      <link>http://blog.mcintyre.pw/tags/logs/</link>
+      <pubDate>Sat, 01 May 2021 01:00:00 +1100</pubDate>
+      
+      <guid>http://blog.mcintyre.pw/tags/logs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Observability</title>
+      <link>http://blog.mcintyre.pw/tags/observability/</link>
+      <pubDate>Sat, 01 May 2021 01:00:00 +1100</pubDate>
+      
+      <guid>http://blog.mcintyre.pw/tags/observability/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless</title>
+      <link>http://blog.mcintyre.pw/tags/serverless/</link>
+      <pubDate>Tue, 29 Nov 2016 23:18:56 +1100</pubDate>
+      
+      <guid>http://blog.mcintyre.pw/tags/serverless/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
