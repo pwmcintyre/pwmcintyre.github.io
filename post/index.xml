@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on words</title>
-    <link>http://blog.mcintyre.pw/post/</link>
+    <link>https://pwmcintyre.github.io/post/</link>
     <description>Recent content in Posts on words</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Sat, 01 May 2021 01:00:00 +1100</lastBuildDate>
     
-	<atom:link href="http://blog.mcintyre.pw/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://pwmcintyre.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>logging</title>
-      <link>http://blog.mcintyre.pw/post/logs/</link>
+      <link>https://pwmcintyre.github.io/post/logs/</link>
       <pubDate>Sat, 01 May 2021 01:00:00 +1100</pubDate>
       
-      <guid>http://blog.mcintyre.pw/post/logs/</guid>
+      <guid>https://pwmcintyre.github.io/post/logs/</guid>
       <description>&lt;p&gt;This page has been converted from my slides found here: &lt;a href=&#34;https://github.com/pwmcintyre/logging/blob/master/README.md&#34;&gt;https://github.com/pwmcintyre/logging/blob/master/README.md&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>why serverless</title>
-      <link>http://blog.mcintyre.pw/post/serverless/</link>
+      <link>https://pwmcintyre.github.io/post/serverless/</link>
       <pubDate>Tue, 29 Nov 2016 23:18:56 +1100</pubDate>
       
-      <guid>http://blog.mcintyre.pw/post/serverless/</guid>
+      <guid>https://pwmcintyre.github.io/post/serverless/</guid>
       <description>&lt;figure&gt;
-    &lt;img src=&#34;http://blog.mcintyre.pw/media/aws_lambda.jpg&#34;/&gt; 
+    &lt;img src=&#34;https://pwmcintyre.github.io/media/aws_lambda.jpg&#34;/&gt; 
 &lt;/figure&gt;
 
 
@@ -36,12 +36,12 @@
     
     <item>
       <title>democratisation of everything</title>
-      <link>http://blog.mcintyre.pw/post/democratization_of_everything/</link>
+      <link>https://pwmcintyre.github.io/post/democratization_of_everything/</link>
       <pubDate>Thu, 03 Nov 2016 23:12:02 +1100</pubDate>
       
-      <guid>http://blog.mcintyre.pw/post/democratization_of_everything/</guid>
+      <guid>https://pwmcintyre.github.io/post/democratization_of_everything/</guid>
       <description>&lt;figure&gt;
-    &lt;img src=&#34;http://blog.mcintyre.pw/media/hoes_one_cylinder_printing_press.png&#34;/&gt; 
+    &lt;img src=&#34;https://pwmcintyre.github.io/media/hoes_one_cylinder_printing_press.png&#34;/&gt; 
 &lt;/figure&gt;
 
 
